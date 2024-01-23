@@ -9,7 +9,7 @@ url.oninput = (e) => {
     return (e.target.value = null);
   }
 
-  fetch(`https://eduardomvirgilio.github.io/palette-generator/${value}`, {
+  fetch(`https://cors-anywhere.herokuapp.com/${value}`, {
     mode: "no-cors",
   })
     .then((res) => res.blob())
