@@ -1,6 +1,7 @@
-const url = document.querySelector("#url");
-const preview = document.querySelector("#preview");
+const $url = document.querySelector("#url");
+const $preview = document.querySelector("#preview");
 const canvas = document.querySelector("#picture");
+const $colors = document.querySelector("#colors");
 const ctx = canvas.getContext("2d");
 
 url.oninput = (e) => {
@@ -17,6 +18,7 @@ url.oninput = (e) => {
       const img = new Image();
       img.src = URL.createObjectURL(blob);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      $colors.innerHTML = null;
       img.onload = () => {
         const scaleWidth = canvas.width / img.width;
         const scaleHeight = canvas.height / img.height;
@@ -24,12 +26,11 @@ url.oninput = (e) => {
         ctx.drawImage(img, 0, 0, img.width * scale, img.height * scale);
         const palette = colors();
         console.clear();
-        palette.forEach((color) =>
-          console.log(
-            "%c" + color[0] + " " + color[1],
-            `background: ${color[0]} ; color: #fff`
-          )
-        );
+        palette.forEach((color) => {
+          let element = document.createElement("li");
+          element.style.backgroundColor = color[0];
+          $colors.appendChild(element);
+        });
       };
     });
 };
