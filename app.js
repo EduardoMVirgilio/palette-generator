@@ -12,22 +12,14 @@ url.oninput = (e) => {
   fetch(`https://cors-anywhere.herokuapp.com/${value}`)
     .then((res) => res.blob())
     .then((blob) => {
-      debugger;
       const img = new Image();
       img.onload = () => {
         preview.append(img);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, 0, 0, img.width, img.height);
-        const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
         let colors = [];
-        for (let i = 0; i < data; i += 4) {
-          const rgba = `${data[i]}, ${data[i + 1]}, ${data[i + 2]}, ${
-            data[i + 3]
-          }`;
-          colors.push(rgba);
-        }
-        let palette = new Set(colors);
-        console.log([...palette]);
+        console.log(data.data);
       };
       img.src = URL.createObjectURL(blob);
     });
