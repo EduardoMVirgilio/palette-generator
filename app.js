@@ -9,7 +9,9 @@ url.oninput = (e) => {
     return (e.target.value = null);
   }
 
-  fetch(value, { mode: "no-cors" })
+  fetch(`https://eduardomvirgilio.github.io/palette-generator/${value}`, {
+    mode: "no-cors",
+  })
     .then((res) => res.blob())
     .then((blob) => {
       const img = new Image();
