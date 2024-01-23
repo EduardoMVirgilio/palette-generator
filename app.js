@@ -14,6 +14,7 @@ url.oninput = (e) => {
   })
     .then((res) => res.blob())
     .then((blob) => {
+      debugger;
       const img = new Image();
       img.onload = () => {
         preview.append(img);
