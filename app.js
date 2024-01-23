@@ -9,9 +9,7 @@ url.oninput = (e) => {
     return (e.target.value = null);
   }
 
-  fetch(`https://cors-anywhere.herokuapp.com/${value}`, {
-    mode: "no-cors",
-  })
+  fetch(`https://cors-anywhere.herokuapp.com/${value}`)
     .then((res) => res.blob())
     .then((blob) => {
       debugger;
